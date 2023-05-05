@@ -1,0 +1,50 @@
+.completed-todo-container {
+    margin-top: 30px;
+    max-height: 500px;
+    overflow-y: auto;
+}
+.completed-todo-box {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dashed #314251;
+}
+.box {
+    padding: 27px 61px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    color: #8fa8c1;
+}
+.todo-title p {
+    font-size: 16px;
+}
+.icons-container {
+    display: flex;
+}
+.todo-editIcon-container {
+    margin-right: 20px;
+    cursor: pointer;
+}
+.todo-deleteIcon-container {
+    cursor: pointer;
+}
+.edit-todo-container {
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px dashed #314251;
+    padding: 18px 49px;
+}
+.edit-todo-container input {
+    width: 250px;
+    border: none;
+    padding: 10px;
+    outline: none;
+    border: 1px solid #435567;
+    background: transparent;
+    border-radius: 4px;
+    color: #8097af;
+    margin-right: 8px;
+}
+.edit-box {
+    margin-bottom: 20px;
+}
