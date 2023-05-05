@@ -20,11 +20,17 @@
     margin-bottom: 20px;
 }
 
-button {
+.add-todo-button {
     background: #0c5488;
     border: none;
     cursor: pointer;
     color: #8fa8c1;
     border-radius: 4px;
     padding: 8px;
+    width: 95px;
+    height: 40px;
+    transition: 0.2s ease-in-out;
+}
+.add-todo-button:hover {
+    background: #08436d;
 }

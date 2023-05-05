@@ -32,7 +32,7 @@
     display: flex;
     justify-content: center;
     border-bottom: 1px dashed #314251;
-    padding: 18px 49px;
+    width: 100%;
 }
 .edit-todo-container input {
     width: 250px;
@@ -47,4 +47,33 @@
 }
 .edit-box {
     margin-bottom: 20px;
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 4px;
+    padding: 0 52px;
+}
+.edit-input {
+    min-width: 234px;
+    height: 40px;
+}
+.cancel-button {
+    color: #0c5488;
+    background: #8fa8c1;
+    width: 76px;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.save-button {
+    width: 76px;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    background: #0c5488;
+    color: #8fa8c1;
+    margin-right: 8px;
 }

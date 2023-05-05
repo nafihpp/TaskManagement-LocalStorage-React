@@ -1,5 +1,6 @@
 .todo-input-container input {
-    width: 297px;
+    min-width: 297px;
+    height: 40px;
     border: none;
     padding: 10px;
     outline: none;
