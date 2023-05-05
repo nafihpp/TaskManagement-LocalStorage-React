@@ -11,11 +11,8 @@ export const TodoList = ({
     setEditInput,
     selectedId,
     setSelectedId,
+    editAndSave,
 }) => {
-    const editRef = useRef(null);
-    useEffect(() => {
-        console.log(editRef.current);
-    }, [selectedId]);
     return (
         <div className="completed-todo-container">
             {todo !== null &&
@@ -52,18 +49,19 @@ export const TodoList = ({
                                 <div className="edit-todo-container">
                                     <div className="edit-box">
                                         <input
-                                            ref={editRef}
                                             value={editInput}
-                                            placeholder="Edit the todo"
                                             onChange={(e) =>
                                                 setEditInput(e.target.value)
                                             }
                                         />
-                                        <button style={{ marginRight: "8px" }}>
+                                        <button
+                                            style={{ marginRight: "8px" }}
+                                            onClick={() => editAndSave(tod.id)}
+                                        >
                                             SAVE
                                         </button>
                                         <button
-                                            style={{ background: "#000" }}
+                                            style={{ background: "#ccc" }}
                                             onClick={() => setSelectedId()}
                                         >
                                             Cancel

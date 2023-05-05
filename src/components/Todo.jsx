@@ -56,7 +56,6 @@ export const Todo = () => {
     //edit Button
     const editTodo = (id) => {
         setSelectedId(id);
-        console.log(editRef.current, "==editRef");
         let localData = localStorage.getItem("todos");
         let parsedData = JSON.parse(localData);
         let editingTodo = parsedData.filter((tod) => tod.id == id);
@@ -71,12 +70,6 @@ export const Todo = () => {
             let parsedData = JSON.parse(localData);
             let uneditTodos = parsedData.filter((tod) => tod.id !== id);
             let editedTodo = parsedData.filter((tod) => tod.id == id);
-            let allTodosAndEdited = [
-                uneditTodos,
-                { ...editedTodo, task: editInput },
-            ];
-            localStorage.setItem("todos", allTodosAndEdited);
-            setTodo(allTodosAndEdited);
         }
     };
 
@@ -109,6 +102,7 @@ export const Todo = () => {
                     setEditInput={setEditInput}
                     selectedId={selectedId}
                     setSelectedId={setSelectedId}
+                    editAndSave={editAndSave}
                 />
             </div>
         </div>
