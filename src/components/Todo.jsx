@@ -4,12 +4,10 @@ import { useEffect, useRef, useState } from "react";
 import { TodoInput } from "./TodoInput";
 import { v4 as uuidv4 } from "uuid";
 import "react-toastify/dist/ReactToastify.css";
-import { toast } from "react-toastify";
 
 export const Todo = () => {
     const inputTodoRef = useRef(null);
-    const editInputRef = useRef(null);
-    const [selectedId, setSelectedId] = useState();
+    const [selectedId, setSelectedId] = useState(0);
     const [editInput, setEditInput] = useState("");
     const [todo, setTodo] = useState([]);
     const [inputValue, setInputValue] = useState("");
@@ -49,6 +47,7 @@ export const Todo = () => {
         }
     }, [todo]);
 
+    //press enter to add todo
     const handleEnter = (event) => {
         const { key } = event;
         if (key == "Enter") {
@@ -61,40 +60,41 @@ export const Todo = () => {
         setSelectedId(id);
         let localData = localStorage.getItem("todos");
         let parsedData = JSON.parse(localData);
-        let editingTodo = parsedData.filter((tod) => tod?.id == id);
+        let editingTodo = parsedData.filter((tod) => tod?.id === id);
         editingTodo.forEach((EditingElement) => {
             setEditInput(EditingElement?.task);
         });
     };
     //editAndSave
     const editAndSave = (id) => {
-        let uneditTodos = todo?.filter((tod) => tod?.id !== id);
-        let editedTodo = todo?.filter((tod) => tod?.id == id);
-        setTodo(uneditTodos, { ...editedTodo, task: editInput });
-        localStorage.setItem("todos", JSON.stringify(todo));
+        const updated = {
+            id: id,
+            task: editInput,
+            completed: false,
+        };
+
+        const updatedTodo = todo?.map((tod) => {
+            if (tod.id === id) {
+                return updated;
+            } else {
+                return tod;
+            }
+        });
+        setTodo(updatedTodo);
+        setSelectedId();
     };
     //completeTodo
     const completeTodo = (id) => {
-        let completedTodo = todo?.filter((tod) => tod?.id === id);
-        let remainingTodos = todo?.filter((tod) => tod?.id !== id);
-        completedTodo.forEach((complete) => {
-            if (complete.completed !== true) {
-                if (remainingTodos.length > 0) {
-                    setTodo([remainingTodos, { ...complete, completed: true }]);
-                } else {
-                    setTodo([{ ...complete, completed: true }]);
-                }
+        const complete = todo?.map((tod) => {
+            if (tod.id === id && tod.completed === true) {
+                return { ...tod, completed: false };
+            } else if (tod.id === id) {
+                return { ...tod, completed: true };
             } else {
-                if (remainingTodos.length > 0) {
-                    setTodo([
-                        remainingTodos,
-                        { ...complete, completed: false },
-                    ]);
-                } else {
-                    setTodo([{ ...complete, completed: true }]);
-                }
+                return tod;
             }
         });
+        setTodo(complete);
     };
 
     //delete todo and then update localstorage and state
@@ -130,7 +130,6 @@ export const Todo = () => {
                     selectedId={selectedId}
                     setSelectedId={setSelectedId}
                     editAndSave={editAndSave}
-                    editInputRef={editInputRef}
                     completeTodo={completeTodo}
                 />
             </div>

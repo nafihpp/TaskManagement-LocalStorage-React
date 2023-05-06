@@ -12,21 +12,25 @@ export const TodoList = ({
     selectedId,
     setSelectedId,
     editAndSave,
-    editInputRef,
     completeTodo,
 }) => {
+    console.log(todo);
     return (
         <div className="completed-todo-container">
             {todo !== null &&
                 todo?.map((tod) => (
                     <div className="completed-todo-box" key={tod.id}>
-                        {selectedId !== tod.id ? (
+                        {tod?.id && selectedId !== tod.id ? (
                             <div className="box">
                                 <div
                                     className="todo-title"
                                     onClick={() => completeTodo(tod.id)}
                                 >
-                                    <p>{tod?.task}</p>
+                                    {!tod?.completed ? (
+                                        <p className="">{tod?.task}</p>
+                                    ) : (
+                                        <s>{tod?.task}</s>
+                                    )}
                                 </div>
                                 <div className="icons-container">
                                     <div
@@ -53,7 +57,6 @@ export const TodoList = ({
                                 <div className="edit-todo-container">
                                     <div className="edit-box">
                                         <input
-                                            ref={editInputRef}
                                             value={editInput}
                                             onChange={(e) =>
                                                 setEditInput(e.target.value)
