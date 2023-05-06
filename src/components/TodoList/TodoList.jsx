@@ -27,9 +27,13 @@ export const TodoList = ({
                                     onClick={() => completeTodo(tod.id)}
                                 >
                                     {!tod?.completed ? (
-                                        <p className="">{tod?.task}</p>
+                                        <p className="todo-title-p">
+                                            {tod?.task}
+                                        </p>
                                     ) : (
-                                        <s>{tod?.task}</s>
+                                        <s className="todo-title-s">
+                                            {tod?.task}
+                                        </s>
                                     )}
                                 </div>
                                 <div className="icons-container">

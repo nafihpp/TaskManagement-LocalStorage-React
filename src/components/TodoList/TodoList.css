@@ -17,6 +17,10 @@
 }
 .todo-title p {
     font-size: 16px;
+    cursor: pointer;
+}
+.todo-title s {
+    cursor: pointer;
 }
 .icons-container {
     display: flex;
